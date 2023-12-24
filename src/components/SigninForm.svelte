@@ -1,44 +1,34 @@
 <script>
-  import {
-    getAuth,
-    inMemoryPersistence,
-    signInWithEmailAndPassword,
-  } from "firebase/auth";
-  import { app } from "../firebase/client";
-  import getFriendlyErrorMessage from "@/firebase/utils/auth/getFriendlyErrorMessage";
-  import { Button } from "@/components/base/button";
-  import GoogleSignInButton from "./social/GoogleSignInButton.svelte";
-  import { Input } from "@/components/base/input";
-  import fetchSignIn from "@/services/api/fetchSignIn";
-  import LoadingButton from "@/components/LoadingButton.svelte";
-  let email, password, errorMessage, loading;
-  const auth = getAuth(app);
-  auth.setPersistence(inMemoryPersistence);
+  import { getAuth, inMemoryPersistence, signInWithEmailAndPassword } from 'firebase/auth'
+  import { app } from '../firebase/client'
+  import getFriendlyErrorMessage from '@/firebase/utils/auth/getFriendlyErrorMessage'
+  import { Button } from '@/components/base/button'
+  import GoogleSignInButton from './social/GoogleSignInButton.svelte'
+  import { Input } from '@/components/base/input'
+  import fetchSignIn from '@/services/api/fetchSignIn'
+  import LoadingButton from '@/components/LoadingButton.svelte'
+  let email, password, errorMessage, loading
+  const auth = getAuth(app)
+  auth.setPersistence(inMemoryPersistence)
 
   async function handleLogin() {
-    loading = true;
+    loading = true
     try {
-      const userCredential = await signInWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
-      const idToken = await userCredential.user.getIdToken();
-      const redirectedUrl = await fetchSignIn(idToken);
+      const userCredential = await signInWithEmailAndPassword(auth, email, password)
+      const idToken = await userCredential.user.getIdToken()
+      const redirectedUrl = await fetchSignIn(idToken)
       if (redirectedUrl) {
-        window.location.assign(redirectedUrl);
+        window.location.assign(redirectedUrl)
       }
     } catch (error) {
-      console.error("Error during sign in:", error);
-      errorMessage = getFriendlyErrorMessage(error);
+      console.error('Error during sign in:', error)
+      errorMessage = getFriendlyErrorMessage(error)
     }
-    loading = false;
+    loading = false
   }
 </script>
 
-<div
-  class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
->
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-md w-full space-y-8 p-6 rounded-xl shadow-lg bg-white">
     <div>
       <h1 class="mt-6 text-center text-3xl font-extrabold text-black">
@@ -47,9 +37,7 @@
       </h1>
       <p class="mt-2 text-center text-sm text-black/80">
         New?
-        <a href="/signup" class="font-medium text-black hover:text-black/70">
-          Create an account
-        </a>
+        <a href="/signup" class="font-medium text-black hover:text-black/70"> Create an account </a>
       </p>
     </div>
     <form class="mt-8 space-y-6" on:submit|preventDefault={handleLogin}>
@@ -74,10 +62,7 @@
             autocomplete="current-password"
           />
           <div class="text-right mt-2">
-            <a
-              href="/forgot-password"
-              class="font-medium text-sm text-black hover:text-black/70"
-            >
+            <a href="/forgot-password" class="font-medium text-sm text-black hover:text-black/70">
               Forgot your password?
             </a>
           </div>

@@ -1,4 +1,4 @@
-import type { ActionReturn } from "svelte/action";
+import type { ActionReturn } from 'svelte/action'
 // https://github.com/WailAbou/shadcn-svelte-nodep/blob/72b96d937afd3b79ae04f883e71e6b42daddb5d7/src/lib/helpers/actions.ts#L5
 // Popover
 /**
@@ -12,26 +12,26 @@ import type { ActionReturn } from "svelte/action";
 
 export function clickOutside(
   node: Node,
-  [callback, except]: [VoidFunction, HTMLElement?]
+  [callback, except]: [VoidFunction, HTMLElement?],
 ): ActionReturn<[VoidFunction, HTMLElement?]> {
   const onClick = (event: MouseEvent) => {
-    const target = event.target as Node;
+    const target = event.target as Node
     if (!node.contains(target) && (!except || !except.contains(target))) {
-      callback();
+      callback()
     }
-  };
+  }
 
-  document.body.addEventListener("click", onClick);
+  document.body.addEventListener('click', onClick)
 
   return {
     update([newCallback, newExcept]: [VoidFunction, HTMLElement?]) {
-      callback = newCallback;
-      except = newExcept;
+      callback = newCallback
+      except = newExcept
     },
     destroy() {
-      document.body.removeEventListener("click", onClick);
+      document.body.removeEventListener('click', onClick)
     },
-  };
+  }
 }
 
 // https://github.com/WailAbou/shadcn-svelte-nodep/blob/72b96d937afd3b79ae04f883e71e6b42daddb5d7/src/lib/helpers/actions.ts#L26
@@ -45,37 +45,37 @@ export function clickOutside(
  * - `codes`: Array of key codes to listen for, e.g., ['Escape'] for the 'ESC' key.
  * - `shiftKey`: KeyCombination to consider the state of the 'Shift' key, with possible values 'ignore', 'always', 'never'.
  */
-type KeyCombination = "always" | "never" | "ignore";
+type KeyCombination = 'always' | 'never' | 'ignore'
 export function keyDown(
   node: Node,
-  [condition, callback, codes, shiftKey = "ignore"]: [
+  [condition, callback, codes, shiftKey = 'ignore']: [
     boolean,
     VoidFunction,
     string[],
-    KeyCombination?
-  ]
+    KeyCombination?,
+  ],
 ): ActionReturn {
   const onKeyDown: EventListener = (event: Event) => {
-    const e = event as KeyboardEvent;
+    const e = event as KeyboardEvent
 
     const shiftCondition =
-      shiftKey === "ignore" ||
-      (shiftKey === "never" && !e.shiftKey) ||
-      (shiftKey === "always" && e.shiftKey);
+      shiftKey === 'ignore' ||
+      (shiftKey === 'never' && !e.shiftKey) ||
+      (shiftKey === 'always' && e.shiftKey)
 
     if (condition && codes.includes(e.code) && shiftCondition) {
-      e.preventDefault();
-      callback();
+      e.preventDefault()
+      callback()
     }
-  };
+  }
 
-  node.addEventListener("keydown", onKeyDown);
+  node.addEventListener('keydown', onKeyDown)
 
   return {
     destroy() {
-      node.removeEventListener("keydown", onKeyDown);
+      node.removeEventListener('keydown', onKeyDown)
     },
-  };
+  }
 }
 // Source: https://github.com/WailAbou/shadcn-svelte-nodep/blob/72b96d937afd3b79ae04f883e71e6b42daddb5d7/src/lib/helpers/actions.ts#L76
 // Popover
@@ -90,78 +90,75 @@ export function keyDown(
  */
 export function focusTrap(node: HTMLElement, enabled: boolean = true) {
   const elemWhitelist: string[] = [
-    "a[href]",
-    "area[href]",
+    'a[href]',
+    'area[href]',
     'input:not([disabled]):not([type="hidden"]):not([aria-hidden])',
-    "select:not([disabled]):not([aria-hidden])",
-    "textarea:not([disabled]):not([aria-hidden])",
-    "button:not([disabled]):not([aria-hidden])",
-    "iframe",
-    "object",
-    "embed",
-    "[contenteditable]",
+    'select:not([disabled]):not([aria-hidden])',
+    'textarea:not([disabled]):not([aria-hidden])',
+    'button:not([disabled]):not([aria-hidden])',
+    'iframe',
+    'object',
+    'embed',
+    '[contenteditable]',
     '[tabindex]:not([tabindex^="-"])',
-  ];
-  let elemFirst: HTMLElement;
-  let elemLast: HTMLElement;
+  ]
+  let elemFirst: HTMLElement
+  let elemLast: HTMLElement
 
   function onFirstElemKeydown(e: KeyboardEvent): void {
-    if (e.shiftKey && e.code === "Tab") {
-      e.preventDefault();
-      elemLast.focus();
+    if (e.shiftKey && e.code === 'Tab') {
+      e.preventDefault()
+      elemLast.focus()
     }
   }
   function onLastElemKeydown(e: KeyboardEvent): void {
-    if (!e.shiftKey && e.code === "Tab") {
-      e.preventDefault();
-      elemFirst.focus();
+    if (!e.shiftKey && e.code === 'Tab') {
+      e.preventDefault()
+      elemFirst.focus()
     }
   }
 
   const onScanElements = (fromObserver: boolean) => {
-    if (enabled === false) return;
+    if (enabled === false) return
 
     const focusableElems: HTMLElement[] = Array.from(
-      node.querySelectorAll(elemWhitelist.join(", "))
-    );
+      node.querySelectorAll(elemWhitelist.join(', ')),
+    )
     if (focusableElems.length) {
-      elemFirst = focusableElems[0];
-      elemLast = focusableElems[focusableElems.length - 1];
+      elemFirst = focusableElems[0]
+      elemLast = focusableElems[focusableElems.length - 1]
 
-      if (!fromObserver) elemFirst.focus();
+      if (!fromObserver) elemFirst.focus()
 
-      elemFirst.addEventListener("keydown", onFirstElemKeydown);
-      elemLast.addEventListener("keydown", onLastElemKeydown);
+      elemFirst.addEventListener('keydown', onFirstElemKeydown)
+      elemLast.addEventListener('keydown', onLastElemKeydown)
     }
-  };
-  onScanElements(false);
+  }
+  onScanElements(false)
 
   function onCleanUp(): void {
-    if (elemFirst) elemFirst.removeEventListener("keydown", onFirstElemKeydown);
-    if (elemLast) elemLast.removeEventListener("keydown", onLastElemKeydown);
+    if (elemFirst) elemFirst.removeEventListener('keydown', onFirstElemKeydown)
+    if (elemLast) elemLast.removeEventListener('keydown', onLastElemKeydown)
   }
 
-  const onObservationChange = (
-    mutationRecords: MutationRecord[],
-    observer: MutationObserver
-  ) => {
+  const onObservationChange = (mutationRecords: MutationRecord[], observer: MutationObserver) => {
     if (mutationRecords.length) {
-      onCleanUp();
-      onScanElements(true);
+      onCleanUp()
+      onScanElements(true)
     }
-    return observer;
-  };
-  const observer = new MutationObserver(onObservationChange);
-  observer.observe(node, { childList: true, subtree: true });
+    return observer
+  }
+  const observer = new MutationObserver(onObservationChange)
+  observer.observe(node, { childList: true, subtree: true })
 
   return {
     update(newArgs: boolean) {
-      enabled = newArgs;
-      newArgs ? onScanElements(false) : onCleanUp();
+      enabled = newArgs
+      newArgs ? onScanElements(false) : onCleanUp()
     },
     destroy() {
-      onCleanUp();
-      observer.disconnect();
+      onCleanUp()
+      observer.disconnect()
     },
-  };
+  }
 }

@@ -1,8 +1,8 @@
 <script lang="ts">
-  export let type: "email" | "text" | "password" | "number" = "text";
-  export let placeholder = "";
-  export let id = "";
-  export let value = "";
+  export let type: 'email' | 'text' | 'password' | 'number' = 'text'
+  export let placeholder = ''
+  export let id = ''
+  export let value = ''
 </script>
 
 <!-- * Using {...{ type }} to handle dynamic types in Svelte - see: https://stackoverflow.com/questions/57392773/error-type-attribute-cannot-be-dynamic-if-input-uses-two-way-binding -->

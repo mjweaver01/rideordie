@@ -1,6 +1,6 @@
 <script>
-  import { Button } from "./base/button";
-  import Spinner from "./icons/Spinner.svelte";
+  import { Button } from './base/button'
+  import Spinner from './icons/Spinner.svelte'
 </script>
 
 <!-- $$restProps let you be able to pass props to the LoadingButton Component 

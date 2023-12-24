@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { Popover } from "@/components/base/popover";
-  import DashboardIcon from "./icons/DashboardIcon.svelte";
-  import LogoutIcon from "./icons/LogoutIcon.svelte";
-  import { Button } from "@/components/base/button";
-  import type { User } from "firebase/auth";
-  export let user: User;
+  import { Popover } from '@/components/base/popover'
+  import DashboardIcon from './icons/DashboardIcon.svelte'
+  import LogoutIcon from './icons/LogoutIcon.svelte'
+  import { Button } from '@/components/base/button'
+  import type { User } from 'firebase/auth'
+  export let user: User
 </script>
 
 {#if user?.email}

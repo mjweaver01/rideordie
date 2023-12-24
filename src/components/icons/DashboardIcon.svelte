@@ -8,15 +8,7 @@
   stroke-width="2"
   stroke-linecap="round"
   stroke-linejoin="round"
-  ><rect
-    x="3"
-    y="3"
-    width="7"
-    height="9"
-    stroke="#000000"
-    fill="none"
-    stroke-width="2px"
-  /><rect
+  ><rect x="3" y="3" width="7" height="9" stroke="#000000" fill="none" stroke-width="2px" /><rect
     x="14"
     y="3"
     width="7"
@@ -24,15 +16,7 @@
     stroke="#000000"
     fill="none"
     stroke-width="2px"
-  /><rect
-    x="14"
-    y="12"
-    width="7"
-    height="9"
-    stroke="#000000"
-    fill="none"
-    stroke-width="2px"
-  /><rect
+  /><rect x="14" y="12" width="7" height="9" stroke="#000000" fill="none" stroke-width="2px" /><rect
     x="3"
     y="16"
     width="7"

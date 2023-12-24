@@ -13,12 +13,7 @@
     stroke="#000000"
     fill="none"
     stroke-width="2px"
-  /><polyline
-    points="16 17 21 12 16 7"
-    stroke="#000000"
-    fill="none"
-    stroke-width="2px"
-  /><line
+  /><polyline points="16 17 21 12 16 7" stroke="#000000" fill="none" stroke-width="2px" /><line
     x1="21"
     y1="12"
     x2="9"

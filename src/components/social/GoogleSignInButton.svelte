@@ -1,16 +1,16 @@
 <script>
-  import { onMount } from "svelte";
-  import GoogleIcon from "@/components/icons/GoogleIcon.svelte";
-  import handleGoogleSignIn from "@/firebase/utils/auth/handleGoogleSignIn";
-  import Spinner from "../icons/Spinner.svelte";
-  import { Button } from "../base/button";
+  import { onMount } from 'svelte'
+  import GoogleIcon from '@/components/icons/GoogleIcon.svelte'
+  import handleGoogleSignIn from '@/firebase/utils/auth/handleGoogleSignIn'
+  import Spinner from '../icons/Spinner.svelte'
+  import { Button } from '../base/button'
 
-  let loading = false;
+  let loading = false
 
   async function signIn() {
-    loading = true;
-    await handleGoogleSignIn();
-    loading = false;
+    loading = true
+    await handleGoogleSignIn()
+    loading = false
   }
 </script>
 

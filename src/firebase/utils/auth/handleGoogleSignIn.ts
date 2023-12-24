@@ -6,28 +6,28 @@
  *
  * @throws Will throw an error if the Google sign-in process or the server session setup fails.
  */
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
-import { app } from "@/firebase/client";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
+import { app } from '@/firebase/client'
 
 async function handleGoogleSignIn() {
-  const auth = getAuth(app);
+  const auth = getAuth(app)
   try {
-    const provider = new GoogleAuthProvider();
-    const userCredential = await signInWithPopup(auth, provider);
+    const provider = new GoogleAuthProvider()
+    const userCredential = await signInWithPopup(auth, provider)
 
-    const idToken = await userCredential.user.getIdToken();
-    const res = await fetch("/api/auth/signin", {
-      method: "GET",
+    const idToken = await userCredential.user.getIdToken()
+    const res = await fetch('/api/auth/signin', {
+      method: 'GET',
       headers: {
         Authorization: `Bearer ${idToken}`,
       },
-    });
+    })
 
     if (res.redirected) {
-      window.location.assign(res.url);
+      window.location.assign(res.url)
     }
   } catch (error) {
-    console.error("Error during Google Sign In or setting user role:", error);
+    console.error('Error during Google Sign In or setting user role:', error)
   }
 }
-export default handleGoogleSignIn;
+export default handleGoogleSignIn

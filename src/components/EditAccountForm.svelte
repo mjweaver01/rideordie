@@ -1,83 +1,64 @@
 <script>
-  import { Button } from "@/components/base/button";
-  import { Input } from "@/components/base/input";
-  import getFriendlyErrorMessage from "@/firebase/utils/auth/getFriendlyErrorMessage";
-  import fetchUpdateUser from "@/services/api/fetchUpdateUser";
-  import LoadingButton from "@/components/LoadingButton.svelte";
+  import { Button } from '@/components/base/button'
+  import { Input } from '@/components/base/input'
+  import getFriendlyErrorMessage from '@/firebase/utils/auth/getFriendlyErrorMessage'
+  import fetchUpdateUser from '@/services/api/fetchUpdateUser'
+  import LoadingButton from '@/components/LoadingButton.svelte'
 
-  export let user;
-  let loading = false;
-  let name = user?.displayName || "";
-  let email = user?.email || "";
-  let errorMessage = "";
-  let successMessage = "";
-  $: hasChanged = name !== user?.displayName || email !== user?.email;
+  export let user
+  let loading = false
+  let name = user?.displayName || ''
+  let email = user?.email || ''
+  let errorMessage = ''
+  let successMessage = ''
+  $: hasChanged = name !== user?.displayName || email !== user?.email
 
   // Function to construct an object with the new account details
   function getAccountUpdates() {
-    let updates = {};
+    let updates = {}
     if (name !== user?.displayName) {
-      updates.displayName = name;
+      updates.displayName = name
     }
     if (email !== user?.email) {
-      updates.email = email;
+      updates.email = email
     }
-    return updates;
+    return updates
   }
 
   async function updateAccountDetails(event) {
-    event.preventDefault();
-    loading = true;
-    successMessage = "";
-    errorMessage = "";
-    const updates = getAccountUpdates();
+    event.preventDefault()
+    loading = true
+    successMessage = ''
+    errorMessage = ''
+    const updates = getAccountUpdates()
 
     try {
-      const updatedUser = await fetchUpdateUser(updates);
-      console.log(updatedUser);
-      successMessage = "Successfully updated..";
-      user = { ...user, ...updatedUser };
+      const updatedUser = await fetchUpdateUser(updates)
+      console.log(updatedUser)
+      successMessage = 'Successfully updated..'
+      user = { ...user, ...updatedUser }
     } catch (error) {
-      console.error("Error updating account:", error);
-      errorMessage = getFriendlyErrorMessage(error);
+      console.error('Error updating account:', error)
+      errorMessage = getFriendlyErrorMessage(error)
     }
-    loading = false;
+    loading = false
   }
 </script>
 
-<div
-  class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
->
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-md w-full space-y-8 p-6 rounded-xl shadow-lg bg-white">
     <div>
-      <h1 class="mt-6 text-center text-3xl font-extrabold text-black">
-        Edit Account
-      </h1>
+      <h1 class="mt-6 text-center text-3xl font-extrabold text-black">Edit Account</h1>
     </div>
-    <form
-      class="mt-8 space-y-6"
-      on:submit|preventDefault={updateAccountDetails}
-    >
+    <form class="mt-8 space-y-6" on:submit|preventDefault={updateAccountDetails}>
       <div class="rounded-md shadow-sm space-y-4">
         <div>
           <label for="name" class="sr-only">Name</label>
-          <Input
-            bind:value={name}
-            type="text"
-            id="name"
-            placeholder="Name"
-            required
-          />
+          <Input bind:value={name} type="text" id="name" placeholder="Name" required />
         </div>
         <div>
           <label for="email" class="sr-only">Email</label>
-          <Input
-            bind:value={email}
-            type="email"
-            id="email"
-            placeholder="Email Address"
-            required
-          />
+          <Input bind:value={email} type="email" id="email" placeholder="Email Address" required />
         </div>
       </div>
       {#if successMessage}
@@ -94,9 +75,7 @@
         {#if loading}
           <LoadingButton class="w-full" type="submit" />
         {:else}
-          <Button disabled={!hasChanged} class="w-full" type="submit"
-            >Save Changes</Button
-          >
+          <Button disabled={!hasChanged} class="w-full" type="submit">Save Changes</Button>
         {/if}
       </div>
     </form>

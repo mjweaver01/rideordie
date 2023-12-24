@@ -1,16 +1,15 @@
 ---
-import SigninForm from "@/components/SigninForm.svelte";
-import Layout from "@/layouts/Layout.astro";
-import getUserData from "../../firebase/utils/auth/getUserData";
-import Navbar from "../../components/Navbar.svelte";
-const title = "Sign In - Astro Starter Pack";
-const description =
-  "Sign in to your account to access personalized settings and features.";
+import SigninForm from '@/components/SigninForm.svelte'
+import Layout from '@/layouts/Layout.astro'
+import getUserData from '../../firebase/utils/auth/getUserData'
+import Navbar from '../../components/Navbar.svelte'
+const title = 'Sign In - Astro Starter Pack'
+const description = 'Sign in to your account to access personalized settings and features.'
 
-const sessionCookie = Astro.cookies.get("session")?.value ?? null;
-const user = await getUserData(sessionCookie);
+const sessionCookie = Astro.cookies.get('session')?.value ?? null
+const user = await getUserData(sessionCookie)
 if (user) {
-  return Astro.redirect("/dashboard");
+  return Astro.redirect('/dashboard')
 }
 ---
 

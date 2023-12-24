@@ -1,35 +1,31 @@
 <script>
-  import { getAuth, sendPasswordResetEmail } from "firebase/auth";
-  import { app } from "@/firebase/client";
-  import { Button } from "@/components/base/button";
-  import { Input } from "@/components/base/input";
-  import getFriendlyErrorMessage from "@/firebase/utils/auth/getFriendlyErrorMessage";
-  import Mail from "./icons/Mail.svelte";
-  import LoadingButton from "./LoadingButton.svelte";
-  let email, errorMessage, loading, successMessage;
-  const auth = getAuth(app);
+  import { getAuth, sendPasswordResetEmail } from 'firebase/auth'
+  import { app } from '@/firebase/client'
+  import { Button } from '@/components/base/button'
+  import { Input } from '@/components/base/input'
+  import getFriendlyErrorMessage from '@/firebase/utils/auth/getFriendlyErrorMessage'
+  import Mail from './icons/Mail.svelte'
+  import LoadingButton from './LoadingButton.svelte'
+  let email, errorMessage, loading, successMessage
+  const auth = getAuth(app)
 
   async function handlePasswordReset() {
-    loading = true;
+    loading = true
     try {
-      await sendPasswordResetEmail(auth, email);
-      successMessage = "Please check your email to reset your password.";
+      await sendPasswordResetEmail(auth, email)
+      successMessage = 'Please check your email to reset your password.'
     } catch (error) {
-      console.error("Error during password reset:", error);
-      errorMessage = getFriendlyErrorMessage(error);
+      console.error('Error during password reset:', error)
+      errorMessage = getFriendlyErrorMessage(error)
     }
-    loading = false;
+    loading = false
   }
 </script>
 
-<div
-  class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
->
+<div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
   <div class="max-w-md w-full space-y-8 p-6 rounded-xl shadow-lg bg-white">
     <div>
-      <h1 class="mt-6 text-center text-3xl font-extrabold text-black">
-        Reset Password
-      </h1>
+      <h1 class="mt-6 text-center text-3xl font-extrabold text-black">Reset Password</h1>
       <p class="mt-2 text-center text-sm text-black/80">
         Enter the email associated with your account.
       </p>

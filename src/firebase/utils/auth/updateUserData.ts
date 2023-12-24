@@ -1,5 +1,5 @@
-import { getAuth } from "firebase-admin/auth";
-import type { UserRecord } from "firebase-admin/auth";
+import { getAuth } from 'firebase-admin/auth'
+import type { UserRecord } from 'firebase-admin/auth'
 
 /**
  * Updates the data for a specified user.
@@ -10,25 +10,22 @@ import type { UserRecord } from "firebase-admin/auth";
  */
 
 type UserUpdates = {
-  displayName?: string;
-  email?: string;
-  emailVerified?: boolean;
+  displayName?: string
+  email?: string
+  emailVerified?: boolean
   // If you want to be able to update more stuff you can add type for that here
-};
+}
 
-async function updateUserData(
-  uid: string,
-  updates: UserUpdates
-): Promise<UserRecord> {
-  const auth = getAuth();
+async function updateUserData(uid: string, updates: UserUpdates): Promise<UserRecord> {
+  const auth = getAuth()
 
   if (updates?.email) {
     // * When Admin firebase SDK when you change email you need to set emailVerified to true
-    updates.emailVerified = false;
+    updates.emailVerified = false
   }
 
   // Perform the update with the modified updates object.
-  return await auth.updateUser(uid, updates);
+  return await auth.updateUser(uid, updates)
 }
 
-export default updateUserData;
+export default updateUserData
