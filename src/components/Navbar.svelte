@@ -27,14 +27,15 @@
     class="mx-5 flex h-16 max-w-screen-xl items-center justify-between w-full"
   >
     <a href="/" class="flex items-center font-display text-2xl">
-      <img
+      <!-- <img
         src="/astro.svg"
         alt="Astro logo"
         width="30"
         height="30"
         class="mr-2 rounded-sm"
       />
-      <p class="ml-5 font-bold">Astro</p>
+      <p class="ml-5 font-bold">Astro</p> -->
+      <p class="ml-5 font-bold">🚗 Ride Or Die 💀</p>
     </a>
     <div>
       {#if user}
