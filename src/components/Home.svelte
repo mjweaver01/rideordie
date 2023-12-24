@@ -22,6 +22,9 @@
         <form class="w-full" action="/api/auth/signout">
           <Button type="submit" class="w-full transform hover:-translate-y-1">Sign out</Button>
         </form>
+        <Button href="/tip" variant="secondary" class="w-full transform hover:-translate-y-1"
+          >Tip Me</Button
+        >
       </div>
     </div>
   {:else}

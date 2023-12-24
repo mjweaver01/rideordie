@@ -1,4 +1,5 @@
 ---
+import { siteName } from '@/lib/constants'
 import Layout from '@/layouts/Layout.astro'
 import Dashboard from '../../components/Dashboard.svelte'
 import Navbar from '../../components/Navbar.svelte'
@@ -13,7 +14,7 @@ if (!user) {
   return Astro.redirect('/signin')
 }
 
-const title = 'Dashboard - Astro Starter Pack'
+const title = `Dashboard - ${siteName}`
 const description = 'Dashboard page to view and manage firebase data'
 ---
 

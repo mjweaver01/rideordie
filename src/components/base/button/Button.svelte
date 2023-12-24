@@ -17,6 +17,8 @@
       'relative flex w-full items-center justify-start space-x-2 rounded-md p-2 text-left text-sm transition-all duration-75 hover:bg-gray-100',
     rounded:
       'rounded-full border border-black bg-black p-1.5 px-4 text-sm text-white hover:bg-black/80 transition duration-200 ease-in-out ',
+    secondary:
+      'py-2 px-4 rounded-md border border-green-300 text-green-700 bg-green-200 hover:bg-green-100 transition duration-200 ease-in-out',
     default:
       'flex justify-center items-center disabled:opacity-30 disabled:pointer-events-none py-2 px-4 rounded-md text-white bg-black hover:bg-black/80 focus:outline-none focus:ring-2 transition duration-200 ease-in-out',
   }
