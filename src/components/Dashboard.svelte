@@ -1,8 +1,8 @@
 <script lang="ts">
   import { Button } from '@/components/base/button'
-  import type { User } from 'firebase/auth'
+  import type { UserRecord } from 'firebase-admin/auth'
   import EditAccountForm from './EditAccountForm.svelte'
-  export let user: User
+  export let user: UserRecord
 </script>
 
 <div class="flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 pt-20">

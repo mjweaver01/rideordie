@@ -2,8 +2,8 @@
   import { onMount } from 'svelte'
   import UserDropdown from '@/components/UserDropdown.svelte'
   import { Button } from '@/components/base/button'
-  import type { User } from 'firebase/auth'
-  export let user: User
+  import type { UserRecord } from 'firebase-admin/auth'
+  export let user: UserRecord | null
   let scrolled = false
 
   onMount(() => {

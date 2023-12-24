@@ -1,8 +1,8 @@
 <script lang="ts">
-  import type { User } from 'firebase/auth'
+  import type { UserRecord } from 'firebase-admin/auth'
   import { Button } from '@/components/base/button'
   import Spinner from './icons/Spinner.svelte'
-  export let user: User
+  export let user: UserRecord | null
 
   function signOut() {
     // Implement your sign-out logic here

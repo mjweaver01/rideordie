@@ -3,8 +3,8 @@
   import DashboardIcon from './icons/DashboardIcon.svelte'
   import LogoutIcon from './icons/LogoutIcon.svelte'
   import { Button } from '@/components/base/button'
-  import type { User } from 'firebase/auth'
-  export let user: User
+  import type { UserRecord } from 'firebase-admin/auth'
+  export let user: UserRecord
 </script>
 
 {#if user?.email}

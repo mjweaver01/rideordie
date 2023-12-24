@@ -1,4 +1,5 @@
 ---
+import type { UserRecord } from 'firebase-admin/auth'
 import Layout from '@/layouts/Layout.astro'
 import Home from '../components/Home.svelte'
 import Navbar from '../components/Navbar.svelte'
@@ -8,7 +9,7 @@ const title = 'Home - Astro Starter Pack'
 const description =
   'Seamlessly integrate Firebase Auth with TailwindCSS and Svelte - start building secure and stylish applications with ease.'
 const sessionCookie = Astro.cookies.get('session')?.value ?? null
-const user = await getUserData(sessionCookie)
+const user: UserRecord | null = await getUserData(sessionCookie)
 ---
 
 <Layout title={title} description={description}>
