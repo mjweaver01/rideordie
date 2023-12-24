@@ -1,5 +1,9 @@
 # 🚗 Ride Or Die 💀
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/03af20a5-3fb1-4202-991e-db2f2a5b3872/deploy-status)](https://app.netlify.com/sites/rideordie-rod/deploys)
+
+### [rideordie-rod.netlify.app](rideordie-rod.netlify.app)
+
 Technologies:
 
 1. [TypeScript](https://www.typescriptlang.org/)
